@@ -3,7 +3,7 @@
     "description": "Send Morse code messages in Gmail",
     "version": "1.0",
     "manifest_version": 3,
-    "permissions": ["activeTab", "storage"],
+    "permissions": ["activeTab", "storage", "scripting"],
     "host_permissions": ["*://mail.google.com/*"],
     "background": {
         "service_worker": "background.js"
