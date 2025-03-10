@@ -1,0 +1,22 @@
+{
+    "name": "MorseCode Generator",
+    "description": "Send Morse code messages in Gmail",
+    "version": "1.0",
+    "manifest_version": 3,
+    "permissions": ["activeTab", "storage"],
+    "host_permissions": ["*://mail.google.com/*"],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "content_scripts": [
+        {
+            "matches": ["*://mail.google.com/*"],
+            "js": ["content.js"],
+            "css": ["content.css"],
+            "run_at": "document_end"
+        }
+    ],
+    "action": {
+        "default_title": "MorseCode Generator"
+    }
+}
