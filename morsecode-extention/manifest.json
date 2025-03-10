@@ -4,13 +4,13 @@
     "version": "1.0",
     "manifest_version": 3,
     "permissions": ["activeTab", "storage", "scripting"],
-    "host_permissions": ["*://mail.google.com/*"],
+    "host_permissions": ["<all_urls>"],
     "background": {
         "service_worker": "background.js"
     },
     "content_scripts": [
         {
-            "matches": ["*://mail.google.com/*"],
+            "matches": ["<all_urls>"],
             "js": ["content.js"],
             "css": ["content.css"],
             "run_at": "document_end"
