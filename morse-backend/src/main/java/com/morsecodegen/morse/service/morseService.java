@@ -38,19 +38,18 @@ public class morseService {
         }
         return encoded.toString();
     }
-    public String decode(String moCode){
-        StringBuilder decoded   = new StringBuilder();
-        String [] words = moCode.split("   ");
-        for(String word : words){
-            for(String letter : word.split(" ")){
-                if(reverseMorseMap.containsKey(letter)){
-                    decoded.append(reverseMorseMap.getOrDefault(letter, '?'));
-                }
+    public String decode(String moCode) {
+        StringBuilder decoded = new StringBuilder();
+        String[] words = moCode.trim().split(" {3}"); 
+    
+        for (String word : words) {
+            for (String letter : word.split(" ")) { 
+                decoded.append(reverseMorseMap.getOrDefault(letter, ' '));
             }
-            decoded.append(" ");
+            decoded.append(" "); 
         }
-        return decoded.toString();
-
+    
+        return decoded.toString().trim(); 
     }
     
 }
