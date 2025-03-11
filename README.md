@@ -1,6 +1,7 @@
 # morsecodegen
 A Chrome extension that enables users to encode and decode Morse code messages directly within Gmail. The extension opens as a sidebar panel, just like the Monica extension, allowing seamless interaction with Gmail.
-
+#Privacy Policy
+https://unrivaled-gelato-7c36ba.netlify.app/
 Features
 ✅ Encode text into Morse code
 ✅ Decode Morse code back into text
