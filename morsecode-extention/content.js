@@ -1,43 +1,43 @@
-if (!document.getElementById("morse-sidebar")) {
-    // Create and inject advanced CSS styling
+if (!document.getElementById("morse_converter_sidebar")) {
+    // Create and inject advanced CSS styling with namespaced selectors and variables
     const styleSheet = document.createElement('style');
     styleSheet.textContent = `
-        :root {
-            --primary-color: #3a2fd0;
-            --primary-dark: #211c84;
-            --primary-light: #6355f5;
-            --accent-color: #ff7b54;
-            --text-light: #ffffff;
-            --text-dark: #1c1c1c;
-            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.15);
-            --shadow-lg: 0 5px 20px rgba(0, 0, 0, 0.25);
-            --border-radius: 12px;
-            --transition-normal: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            --font-main: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        .morse_converter_root {
+            --morse_converter_primary: #3a2fd0;
+            --morse_converter_primary_dark: #211c84;
+            --morse_converter_primary_light: #6355f5;
+            --morse_converter_accent: #ff7b54;
+            --morse_converter_text_light: #ffffff;
+            --morse_converter_text_dark: #1c1c1c;
+            --morse_converter_shadow_sm: 0 2px 8px rgba(0, 0, 0, 0.15);
+            --morse_converter_shadow_lg: 0 5px 20px rgba(0, 0, 0, 0.25);
+            --morse_converter_border_radius: 12px;
+            --morse_converter_transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --morse_converter_font: 'Segoe UI', system-ui, -apple-system, sans-serif;
         }
 
-        #morse-sidebar {
+        #morse_converter_sidebar {
             position: fixed;
             top: 20px;
             right: -400px;
             width: 380px;
             height: calc(100vh - 40px);
             max-height: calc(100vh - 40px);
-            background: linear-gradient(145deg, var(--primary-color), var(--primary-dark));
-            border-radius: var(--border-radius) 0 0 var(--border-radius);
-            box-shadow: var(--shadow-lg);
+            background: linear-gradient(145deg, var(--morse_converter_primary), var(--morse_converter_primary_dark));
+            border-radius: var(--morse_converter_border_radius) 0 0 var(--morse_converter_border_radius);
+            box-shadow: var(--morse_converter_shadow_lg);
             z-index: 10000;
             display: flex;
             flex-direction: column;
-            font-family: var(--font-main);
-            transition: var(--transition-normal);
+            font-family: var(--morse_converter_font);
+            transition: var(--morse_converter_transition);
             overflow: hidden;
             backdrop-filter: blur(10px);
             border-left: 1px solid rgba(255, 255, 255, 0.1);
             box-sizing: border-box;
         }
         
-        #morse-header {
+        #morse_converter_header {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -49,23 +49,23 @@ if (!document.getElementById("morse-sidebar")) {
             box-sizing: border-box;
         }
         
-        #morse-header .title {
+        #morse_converter_header .morse_converter_title {
             font-size: 1.3rem;
             font-weight: 600;
-            color: var(--text-light);
+            color: var(--morse_converter_text_light);
             display: flex;
             align-items: center;
             gap: 10px;
             white-space: nowrap;
         }
         
-        #morse-header .title svg {
+        #morse_converter_header .morse_converter_title svg {
             height: 24px;
             width: 24px;
             flex-shrink: 0;
         }
         
-        #morse-content {
+        #morse_converter_content {
             padding: 20px 25px;
             flex-grow: 1;
             display: flex;
@@ -77,26 +77,26 @@ if (!document.getElementById("morse-sidebar")) {
             scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
         }
         
-        #morse-content::-webkit-scrollbar {
+        #morse_converter_content::-webkit-scrollbar {
             width: 6px;
         }
         
-        #morse-content::-webkit-scrollbar-track {
+        #morse_converter_content::-webkit-scrollbar-track {
             background: transparent;
         }
         
-        #morse-content::-webkit-scrollbar-thumb {
+        #morse_converter_content::-webkit-scrollbar-thumb {
             background-color: rgba(255, 255, 255, 0.3);
             border-radius: 10px;
         }
         
-        .input-group {
+        .morse_converter_input_group {
             position: relative;
             width: 100%;
             box-sizing: border-box;
         }
         
-        .input-group label {
+        .morse_converter_input_group label {
             display: block;
             margin-bottom: 8px;
             color: rgba(255, 255, 255, 0.7);
@@ -104,49 +104,49 @@ if (!document.getElementById("morse-sidebar")) {
             font-weight: 500;
         }
         
-        #morse-input {
+        #morse_converter_input {
             width: 100%;
             min-height: 100px;
             max-height: 150px;
             padding: 15px;
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: var(--border-radius);
-            color: var(--text-light);
+            border-radius: var(--morse_converter_border_radius);
+            color: var(--morse_converter_text_light);
             font-size: 1rem;
-            font-family: var(--font-main);
+            font-family: var(--morse_converter_font);
             resize: vertical;
             outline: none;
-            transition: var(--transition-normal);
+            transition: var(--morse_converter_transition);
             backdrop-filter: blur(5px);
             box-sizing: border-box;
             scrollbar-width: thin;
             scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
         }
         
-        #morse-input::-webkit-scrollbar {
+        #morse_converter_input::-webkit-scrollbar {
             width: 6px;
         }
         
-        #morse-input::-webkit-scrollbar-track {
+        #morse_converter_input::-webkit-scrollbar-track {
             background: transparent;
         }
         
-        #morse-input::-webkit-scrollbar-thumb {
+        #morse_converter_input::-webkit-scrollbar-thumb {
             background-color: rgba(255, 255, 255, 0.3);
             border-radius: 10px;
         }
         
-        #morse-input:focus {
-            border-color: var(--accent-color);
+        #morse_converter_input:focus {
+            border-color: var(--morse_converter_accent);
             box-shadow: 0 0 0 2px rgba(255, 123, 84, 0.3);
         }
         
-        #morse-input::placeholder {
+        #morse_converter_input::placeholder {
             color: rgba(255, 255, 255, 0.4);
         }
         
-        .btn-group {
+        .morse_converter_btn_group {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 10px;
@@ -155,37 +155,37 @@ if (!document.getElementById("morse-sidebar")) {
             box-sizing: border-box;
         }
         
-        .btn-group.full {
+        .morse_converter_btn_group.morse_converter_full {
             grid-template-columns: 1fr;
         }
         
-        .morse-button {
+        .morse_converter_button {
             padding: 12px 15px;
             border: none;
             outline: none;
-            border-radius: var(--border-radius);
+            border-radius: var(--morse_converter_border_radius);
             font-weight: 600;
             font-size: 0.95rem;
             cursor: pointer;
-            transition: var(--transition-normal);
+            transition: var(--morse_converter_transition);
             position: relative;
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
-            box-shadow: var(--shadow-sm);
+            box-shadow: var(--morse_converter_shadow_sm);
             box-sizing: border-box;
             width: 100%;
         }
         
-        .morse-button svg {
+        .morse_converter_button svg {
             width: 18px;
             height: 18px;
             flex-shrink: 0;
         }
         
-        .morse-button::before {
+        .morse_converter_button::before {
             content: '';
             position: absolute;
             top: 0;
@@ -194,29 +194,29 @@ if (!document.getElementById("morse-sidebar")) {
             height: 100%;
             background: linear-gradient(to bottom, rgba(255,255,255,0.1), rgba(255,255,255,0));
             opacity: 0;
-            transition: var(--transition-normal);
+            transition: var(--morse_converter_transition);
         }
         
-        .morse-button:hover::before {
+        .morse_converter_button:hover::before {
             opacity: 1;
         }
         
-        .morse-button:active {
+        .morse_converter_button:active {
             transform: translateY(1px);
         }
         
-        .btn-primary {
-            background: var(--accent-color);
-            color: var(--text-light);
+        .morse_converter_btn_primary {
+            background: var(--morse_converter_accent);
+            color: var(--morse_converter_text_light);
         }
         
-        .btn-secondary {
+        .morse_converter_btn_secondary {
             background: rgba(255, 255, 255, 0.1);
-            color: var(--text-light);
+            color: var(--morse_converter_text_light);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
-        .output-container {
+        .morse_converter_output_container {
             margin-top: 10px;
             flex-grow: 1;
             display: flex;
@@ -226,7 +226,7 @@ if (!document.getElementById("morse-sidebar")) {
             box-sizing: border-box;
         }
         
-        .output-container label {
+        .morse_converter_output_container label {
             display: block;
             margin-bottom: 8px;
             color: rgba(255, 255, 255, 0.7);
@@ -234,14 +234,14 @@ if (!document.getElementById("morse-sidebar")) {
             font-weight: 500;
         }
         
-        #morse-output {
+        #morse_converter_output {
             flex-grow: 1;
             min-height: 80px;
             max-height: 150px;
             padding: 15px;
             background: rgba(0, 0, 0, 0.2);
-            border-radius: var(--border-radius);
-            color: var(--text-light);
+            border-radius: var(--morse_converter_border_radius);
+            color: var(--morse_converter_text_light);
             font-family: 'Courier New', monospace;
             font-size: 1rem;
             white-space: pre-wrap;
@@ -254,65 +254,65 @@ if (!document.getElementById("morse-sidebar")) {
             scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
         }
         
-        #morse-output::-webkit-scrollbar {
+        #morse_converter_output::-webkit-scrollbar {
             width: 6px;
         }
         
-        #morse-output::-webkit-scrollbar-track {
+        #morse_converter_output::-webkit-scrollbar-track {
             background: transparent;
         }
         
-        #morse-output::-webkit-scrollbar-thumb {
+        #morse_converter_output::-webkit-scrollbar-thumb {
             background-color: rgba(255, 255, 255, 0.3);
             border-radius: 10px;
         }
         
-        .empty-output {
+        .morse_converter_empty_output {
             color: rgba(255, 255, 255, 0.4);
             font-style: italic;
         }
         
-        #morse-side-peek {
+        #morse_converter_toggle_btn {
             position: fixed;
             right: 0;
             top: 50%;
             transform: translateY(-50%);
             z-index: 9999;
             border: none;
-            background: var(--primary-color);
-            color: var(--text-light);
+            background: var(--morse_converter_primary);
+            color: var(--morse_converter_text_light);
             width: 48px;
             height: 70px;
-            border-radius: var(--border-radius) 0 0 var(--border-radius);
+            border-radius: var(--morse_converter_border_radius) 0 0 var(--morse_converter_border_radius);
             cursor: pointer;
-            box-shadow: var(--shadow-lg);
+            box-shadow: var(--morse_converter_shadow_lg);
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: var(--transition-normal);
+            transition: var(--morse_converter_transition);
         }
         
-        #morse-side-peek:hover {
-            background: var(--primary-light);
+        #morse_converter_toggle_btn:hover {
+            background: var(--morse_converter_primary_light);
             width: 52px;
         }
         
-        #morse-side-peek svg {
+        #morse_converter_toggle_btn svg {
             width: 24px;
             height: 24px;
-            fill: var(--text-light);
-            transition: var(--transition-normal);
+            fill: var(--morse_converter_text_light);
+            transition: var(--morse_converter_transition);
         }
         
-        .toast-notification {
+        .morse_converter_toast {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background: var(--accent-color);
-            color: var(--text-light);
+            background: var(--morse_converter_accent);
+            color: var(--morse_converter_text_light);
             padding: 12px 20px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-lg);
+            border-radius: var(--morse_converter_border_radius);
+            box-shadow: var(--morse_converter_shadow_lg);
             font-weight: 500;
             display: flex;
             align-items: center;
@@ -324,18 +324,18 @@ if (!document.getElementById("morse-sidebar")) {
             pointer-events: none;
         }
         
-        .toast-notification.show {
+        .morse_converter_toast.show {
             transform: translateY(0);
             opacity: 1;
         }
         
-        .toast-notification svg {
+        .morse_converter_toast svg {
             width: 20px;
             height: 20px;
             flex-shrink: 0;
         }
         
-        .morse-footer {
+        .morse_converter_footer {
             padding: 15px 25px;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
             font-size: 0.8rem;
@@ -346,41 +346,41 @@ if (!document.getElementById("morse-sidebar")) {
         }
         
         /* Keyboard shortcut hints */
-        .keyboard-hint {
-            position: absolute;
-            right: 10px;
-            top: 10px;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 4px;
-            padding: 3px 6px;
-            font-size: 0.7rem;
-            color: rgba(255, 255, 255, 0.7);
-            pointer-events: none;
-        }
+      .morse_converter_keyboard_hint {
+        position: absolute;
+        right: 10px;
+        too:-10px; /* Move it above the input instead of inside */
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 4px;
+        padding: 3px 6px;
+        font-size: 0.7rem;
+        color: rgba(255, 255, 255, 0.7);
+        pointer-events: none;
+    }
         
         /* Loading indicator */
-        .loading-indicator {
+        .morse_converter_loading {
             display: none;
             width: 18px;
             height: 18px;
             border: 2px solid rgba(255, 255, 255, 0.3);
-            border-top: 2px solid var(--text-light);
+            border-top: 2px solid var(--morse_converter_text_light);
             border-radius: 50%;
-            animation: spin 1s linear infinite;
+            animation: morse_converter_spin 1s linear infinite;
             margin-right: 8px;
             flex-shrink: 0;
         }
         
-        @keyframes spin {
+        @keyframes morse_converter_spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
         
         /* Shortcut Info */
-        .shortcut-info {
-            position: absolute;
-            bottom: 15px;
-            right: 15px;
+        .morse_converter_shortcut_info {
+            position: relative; /* Change from absolute to relative */
+            margin-top: 2px;
+            margin-bottom: 1px;
             background: rgba(0, 0, 0, 0.3);
             border-radius: 4px;
             padding: 3px 6px;
@@ -388,60 +388,70 @@ if (!document.getElementById("morse-sidebar")) {
             color: rgba(255, 255, 255, 0.7);
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 5px;
+            width: fit-content;
         }
         
-        .shortcut-info span {
+       .morse_converter_shortcut_info span {
+            margin-top: 2px; /* Reduced margin to prevent overlap */
+            padding: 1px 5px; /* Slightly increased padding for better spacing */
             background: rgba(255, 255, 255, 0.1);
             border-radius: 3px;
-            padding: 1px 5px;
             font-family: monospace;
         }
+
         
         /* Responsive styles */
         @media (max-width: 600px) {
-            #morse-sidebar {
+            #morse_converter_sidebar {
                 width: 320px;
                 right: -330px;
                 top: 10px;
                 height: calc(100vh - 20px);
             }
             
-            #morse-header {
+            #morse_converter_header {
                 padding: 15px 20px;
             }
             
-            #morse-content {
+            #morse_converter_content {
                 padding: 15px 20px;
             }
             
-            .btn-group {
+            .morse_converter_btn_group {
                 grid-template-columns: 1fr;
             }
         }
         
         /* Fix for small screens and mobile */
         @media (max-height: 600px) {
-            #morse-sidebar {
+            #morse_converter_sidebar {
                 top: 10px;
                 height: calc(100vh - 20px);
             }
             
-            #morse-input, #morse-output {
+            #morse_converter_input, #morse_converter_output {
                 min-height: 60px;
                 max-height: 100px;
             }
             
-            .morse-footer {
+            .morse_converter_footer {
                 padding: 10px;
             }
         }
     `;
     document.head.appendChild(styleSheet);
 
+    // Create root element to contain the CSS variables
+    let rootElement = document.createElement("div");
+    rootElement.className = "morse_converter_root";
+    document.body.appendChild(rootElement);
+
     // Create the sidebar
     let sidebar = document.createElement("div");
-    sidebar.id = "morse-sidebar";
+    sidebar.id = "morse_converter_sidebar";
+    rootElement.appendChild(sidebar);
 
     // SVG icons for buttons and UI elements
     const icons = {
@@ -457,82 +467,84 @@ if (!document.getElementById("morse-sidebar")) {
 
     // HTML structure
     sidebar.innerHTML = `
-        <div id="morse-header">
-            <div class="title">${icons.morse} Morse Code Converter</div>
+        <div id="morse_converter_header">
+            <div class="morse_converter_title">${icons.morse} Morse Code Converter</div>
+            <button id="morse_converter_close_btn" class="morse_converter_button morse_converter_btn_secondary" style="width: auto; padding: 8px; background: rgba(255, 255, 255, 0.05);">
+                ${icons.close}
+            </button>
         </div>
-        <div id="morse-content">
-            <div class="input-group">
-                <label for="morse-input">Message</label>
-                <textarea id="morse-input" placeholder="Type text to encode or Morse code to decode..." rows="4"></textarea>
-                <div class="keyboard-hint">Ctrl+Enter</div>
+        <div id="morse_converter_content">
+            <div class="morse_converter_input_group">
+                <label for="morse_converter_input">Message</label>
+                <textarea id="morse_converter_input" placeholder="Type text to encode or Morse code to decode..." rows="4"></textarea>
+                <div class="morse_converter_keyboard_hint">Ctrl+Enter</div>
             </div>
             
-            <div class="btn-group">
-                <button id="morse-encode" class="morse-button btn-primary">
+            <div class="morse_converter_btn_group">
+                <button id="morse_converter_encode" class="morse_converter_button morse_converter_btn_primary">
                     ${icons.encode} Encode
-                    <div class="loading-indicator" id="encode-loader"></div>
+                    <div class="morse_converter_loading" id="morse_converter_encode_loader"></div>
                 </button>
-                <button id="morse-decode" class="morse-button btn-primary">
+                <button id="morse_converter_decode" class="morse_converter_button morse_converter_btn_primary">
                     ${icons.decode} Decode
-                    <div class="loading-indicator" id="decode-loader"></div>
+                    <div class="morse_converter_loading" id="morse_converter_decode_loader"></div>
                 </button>
             </div>
             
-            <div class="output-container">
+            <div class="morse_converter_output_container">
                 <label>Result</label>
-                <div id="morse-output"><span class="empty-output">Your result will appear here</span></div>
+                <div id="morse_converter_output"><span class="morse_converter_empty_output">Your result will appear here</span></div>
             </div>
-            
-            <div class="btn-group full">
-                <button id="morse-copy" class="morse-button btn-secondary">
+            <div class="morse_converter_shortcut_info">${icons.keyboard} <span>Alt+M</span> to toggle</div>
+            <div class="morse_converter_btn_group morse_converter_full">
+                <button id="morse_converter_copy" class="morse_converter_button morse_converter_btn_secondary">
                     ${icons.copy} Copy to Clipboard
                 </button>
             </div>
         </div>
-        <div class="morse-footer">
+        <br>
+        <div class="morse_converter_footer">
             Morse Code Reference: · = dot, − = dash
-            <div class="shortcut-info">${icons.keyboard} <span>Alt+B</span> to toggle</div>
+               <br>
+            
+            all rights received ©️ - praneswar 2025
         </div>
     `;
 
-    document.body.appendChild(sidebar);
-
-    // Create toggle button
-    let sideToggleBtn = document.createElement("button");
-    sideToggleBtn.id = "morse-side-peek";
-    sideToggleBtn.innerHTML = icons.menu;
-    document.body.appendChild(sideToggleBtn);
+    // Create toggle button (separate from close button)
+    let toggleBtn = document.createElement("button");
+    toggleBtn.id = "morse_converter_toggle_btn";
+    toggleBtn.innerHTML = icons.menu;
+    rootElement.appendChild(toggleBtn);
 
     // Create toast notification element
     let toastNotification = document.createElement("div");
-    toastNotification.className = "toast-notification";
+    toastNotification.className = "morse_converter_toast";
     toastNotification.innerHTML = `${icons.check} <span>Copied to clipboard</span>`;
-    document.body.appendChild(toastNotification);
+    rootElement.appendChild(toastNotification);
 
-    // Function to toggle sidebar visibility
-    // Function to toggle sidebar visibility
-    function toggleSidebar() {
-        const isMobile = window.innerWidth <= 600;
-        const rightValue = isMobile ? "-330px" : "-400px";
+    // Function to open sidebar
+    function openSidebar() {
+        sidebar.style.right = "0px";
+        toggleBtn.style.display = "none";
 
-        if (sidebar.style.right === "0px") {
-            sidebar.style.right = rightValue;
-            sideToggleBtn.innerHTML = icons.menu;
-        } else {
-            sidebar.style.right = "0px";
-            sideToggleBtn.innerHTML = icons.close;
+        // Get selected text from the document
+        const selectedText = window.getSelection().toString().trim();
 
-            // Get selected text from the document
-            const selectedText = window.getSelection().toString().trim();
-
-            // If text is selected, paste it into the input field
-            if (selectedText) {
-                document.getElementById("morse-input").value = selectedText;
-            }
-
-            // Focus on input box when opening sidebar
-            document.getElementById("morse-input").focus();
+        // If text is selected, paste it into the input field
+        if (selectedText) {
+            document.getElementById("morse_converter_input").value = selectedText;
         }
+
+        // Focus on input box when opening sidebar
+        document.getElementById("morse_converter_input").focus();
+    }
+
+    // Function to close sidebar
+    function closeSidebar() {
+        const isMobile = window.innerWidth <= 600;
+        sidebar.style.right = isMobile ? "-330px" : "-400px";
+        toggleBtn.style.display = "flex";
     }
 
     // Function to show toast notification
@@ -546,22 +558,23 @@ if (!document.getElementById("morse-sidebar")) {
         }, 3000);
     }
 
-    // Toggle sidebar event
-    sideToggleBtn.addEventListener("click", toggleSidebar);
+    // Event listeners for sidebar toggle
+    toggleBtn.addEventListener("click", openSidebar);
+    document.getElementById("morse_converter_close_btn").addEventListener("click", closeSidebar);
 
     // Set up event listeners for buttons
-    document.getElementById("morse-encode").addEventListener("click", () => {
-        const message = document.getElementById("morse-input").value;
+    document.getElementById("morse_converter_encode").addEventListener("click", () => {
+        const message = document.getElementById("morse_converter_input").value;
         if (!message.trim()) {
-            document.getElementById("morse-output").innerHTML = '<span class="empty-output">Please enter a message to encode</span>';
+            document.getElementById("morse_converter_output").innerHTML = '<span class="morse_converter_empty_output">Please enter a message to encode</span>';
             return;
         }
 
         // Show loading indicator
-        const loader = document.getElementById("encode-loader");
+        const loader = document.getElementById("morse_converter_encode_loader");
         loader.style.display = "inline-block";
 
-        fetch(`http://localhost:8080/api/morse/encode`, {
+        fetch(`https://morsecodegen-latest.onrender.com/api/morse/encode`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ message: message })
@@ -573,10 +586,10 @@ if (!document.getElementById("morse-sidebar")) {
                 return response.json();
             })
             .then(data => {
-                document.getElementById("morse-output").textContent = data.encoded;
+                document.getElementById("morse_converter_output").textContent = data.encoded;
             })
             .catch(error => {
-                document.getElementById("morse-output").textContent = "Error: Could not connect to server";
+                document.getElementById("morse_converter_output").textContent = "Error: Could not connect to server";
                 console.error('Error:', error);
             })
             .finally(() => {
@@ -585,18 +598,18 @@ if (!document.getElementById("morse-sidebar")) {
             });
     });
 
-    document.getElementById("morse-decode").addEventListener("click", () => {
-        const morseCode = document.getElementById("morse-input").value;
+    document.getElementById("morse_converter_decode").addEventListener("click", () => {
+        const morseCode = document.getElementById("morse_converter_input").value;
         if (!morseCode.trim()) {
-            document.getElementById("morse-output").innerHTML = '<span class="empty-output">Please enter Morse code to decode</span>';
+            document.getElementById("morse_converter_output").innerHTML = '<span class="morse_converter_empty_output">Please enter Morse code to decode</span>';
             return;
         }
 
         // Show loading indicator
-        const loader = document.getElementById("decode-loader");
+        const loader = document.getElementById("morse_converter_decode_loader");
         loader.style.display = "inline-block";
 
-        fetch(`http://localhost:8080/api/morse/decode`, {
+        fetch(`https://morsecodegen-latest.onrender.com/api/morse/decode`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ message: morseCode })
@@ -608,10 +621,10 @@ if (!document.getElementById("morse-sidebar")) {
                 return response.json();
             })
             .then(data => {
-                document.getElementById("morse-output").textContent = data.decoded;
+                document.getElementById("morse_converter_output").textContent = data.decoded;
             })
             .catch(error => {
-                document.getElementById("morse-output").textContent = "Error: Could not connect to server";
+                document.getElementById("morse_converter_output").textContent = "Error: Could not connect to server";
                 console.error('Error:', error);
             })
             .finally(() => {
@@ -620,11 +633,11 @@ if (!document.getElementById("morse-sidebar")) {
             });
     });
 
-    document.getElementById("morse-copy").addEventListener("click", () => {
-        const output = document.getElementById("morse-output");
+    document.getElementById("morse_converter_copy").addEventListener("click", () => {
+        const output = document.getElementById("morse_converter_output");
         const outputText = output.textContent;
 
-        if (!outputText || output.innerHTML.includes("empty-output")) {
+        if (!outputText || output.innerHTML.includes("morse_converter_empty_output")) {
             showToast("Nothing to copy");
             return;
         }
@@ -640,24 +653,28 @@ if (!document.getElementById("morse-sidebar")) {
     });
 
     // Add keyboard shortcuts
-    document.getElementById("morse-input").addEventListener("keydown", (e) => {
+    document.getElementById("morse_converter_input").addEventListener("keydown", (e) => {
         // Ctrl+Enter to encode
         if (e.key === "Enter" && e.ctrlKey) {
-            document.getElementById("morse-encode").click();
+            document.getElementById("morse_converter_encode").click();
             e.preventDefault();
         }
         // Alt+Enter to decode
         else if (e.key === "Enter" && e.altKey) {
-            document.getElementById("morse-decode").click();
+            document.getElementById("morse_converter_decode").click();
             e.preventDefault();
         }
     });
 
-    // Global Alt+B shortcut to toggle sidebar
+    // Global Alt+M shortcut to toggle sidebar (changed from Alt+B to avoid conflicts)
     document.addEventListener("keydown", (e) => {
-        if (e.key === "b" && e.altKey) {
+        if (e.key === "m" && e.altKey) {
             e.preventDefault(); // Prevent default browser actions
-            toggleSidebar();
+            if (sidebar.style.right === "0px") {
+                closeSidebar();
+            } else {
+                openSidebar();
+            }
         }
     });
 
